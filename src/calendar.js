@@ -286,7 +286,7 @@ angular.module('ui.calendar', [])
                         }
                         calendar.fullCalendar(options);
 
-                        scope.onCreate && scope.onCreate(calendar)
+                        scope.onCreate && scope.onCreate({calendar:calendar});
                        
                         if (attrs.calendar) {
                             uiCalendarConfig.calendars[attrs.calendar] = calendar;
