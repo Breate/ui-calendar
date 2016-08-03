@@ -236,8 +236,9 @@ angular.module('ui.calendar', [])
                 restrict : 'A',
                 scope : {
                     eventSources : '=ngModel',
-                    calendarWatchEvent : '&'
-                },
+                    calendarWatchEvent : '&',
+                    onCreate:'&'
+                  },
                 controller : 'uiCalendarCtrl',
                 link : function (scope, elm, attrs, controller) {
                     var sources = scope.eventSources;
@@ -284,6 +285,9 @@ angular.module('ui.calendar', [])
                             calendar = angular.element(elm).html('');
                         }
                         calendar.fullCalendar(options);
+
+                        onCreate && onCreate(calendar)
+                       
                         if (attrs.calendar) {
                             uiCalendarConfig.calendars[attrs.calendar] = calendar;
                         }
